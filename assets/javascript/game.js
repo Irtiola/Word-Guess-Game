@@ -7,7 +7,8 @@ var word_to_guess;
 // This function has an internal dictionary of words. Every time you call it, it returns a random word from its
 // dictionary.
 function GetRandomWord() {
-    var word_list = ["moscow", "seol", "rome", "venice", "deli","denpasar","bangkok", "hochiminh", "dubrovnik", "tivat", "helsinki", "singapore", "hongKong"];
+    var word_list = ["argentina", "afganistan", "brazil", 
+    "belgium", "cambodia", "iran", "india", "russia", "korea", "spain", "australia", "canada"];
     return word_list[Math.floor(Math.random()*word_list.length)];  
 }
 
@@ -16,6 +17,9 @@ function ResetStart(){
     num_guesses = 12;
     array_of_guessed_chars = [];
     word_to_guess = GetRandomWord();
+    word_on_screen = GetWordOnScreenFromUserGuess(word_to_guess, array_of_guessed_chars);
+    UpdateScreen();
+    console.log(word_to_guess);
 }
 window.onload = ResetStart;
 
@@ -45,8 +49,18 @@ function UpdateScreen() { //every time when this function called we update all n
 
 
 function Play(){ 
+    if (array_of_guessed_chars.includes(event.key)) return;
     array_of_guessed_chars.push(event.key);
     word_on_screen = GetWordOnScreenFromUserGuess(word_to_guess, array_of_guessed_chars);
+    
+
+    if (!word_to_guess.includes(event.key)) num_guesses--;
+    if (num_guesses == 0) ResetStart();
+    if (!word_on_screen.includes('_')) {
+        num_wins++;
+        ResetStart();
+    }
+
     UpdateScreen();
 }
 
