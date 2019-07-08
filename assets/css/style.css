@@ -1,8 +1,35 @@
 body{
-    background-image: url("images/bgmap.jpg");
+    background-image: url("../images/bigmap.png");
+    background-position: center;
+   
 }
 
 h1{
     text-align: center;
     color: green;
+}
+
+p,div{
+    text-align: center;
+    font-size: x-large;
+    font-weight: 500px;
+    color: green;
+}
+
+div#num_wins, div#country_to_guess{
+    font-size: xx-large;
+    color: orangered;
+}
+
+div#num_guesses, div#guessed_letters{
+    font-size: xx-large;
+    color: blue;
+}
+
+img#flag{
+    width:200px;
+}
+.blink{
+    animation: 
+    
 }

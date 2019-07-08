@@ -2,24 +2,57 @@ var num_wins = 0;
 var num_guesses = 12;
 var array_of_guessed_chars = [];
 var word_on_screen;
-var word_to_guess;
+var country_to_guess;
+var flag_image_dir = 'assets/images/flags/';
 
 // This function has an internal dictionary of words. Every time you call it, it returns a random word from its
 // dictionary.
 function GetRandomWord() {
-    var word_list = ["argentina", "afganistan", "brazil", 
-    "belgium", "cambodia", "iran", "india", "russia", "korea", "spain", "australia", "canada"];
+    var word_list = ['argentina', 'afghanistan', 'brazil', 
+    'belgium', 'cambodia', 'iran', 'india', 'russia','jordan', 'spain', 'australia', 'canada'];
     return word_list[Math.floor(Math.random()*word_list.length)];  
+}
+
+function GetCountryId(country_name) {
+    switch(country_name) {
+        case 'argentina':
+            return 'ar';
+        case 'afghanistan':
+          return 'af';
+        case 'brazil':
+        return 'br';
+        case 'belgium':
+            return 'be';
+        case 'cambodia':
+            return 'kh';
+        case 'iran':
+            return 'ir';
+        case 'india':
+            return 'in';
+        case 'russia':
+            return 'ru';
+        case 'jordan':
+            return 'jo';
+        case 'spain':
+            return 'es';
+        case 'australia':
+            return 'au';
+        case 'canada':
+            return 'ca';
+        default:
+            return '';
+      }
+    return '';  
 }
 
 // Call this on page load
 function ResetStart(){
     num_guesses = 12;
     array_of_guessed_chars = [];
-    word_to_guess = GetRandomWord();
-    word_on_screen = GetWordOnScreenFromUserGuess(word_to_guess, array_of_guessed_chars);
+    country_to_guess = GetRandomWord();
+    word_on_screen = GetWordOnScreenFromUserGuess(country_to_guess, array_of_guessed_chars);
     UpdateScreen();
-    console.log(word_to_guess);
+    console.log(country_to_guess);
 }
 window.onload = ResetStart;
 
@@ -42,8 +75,9 @@ function GetWordOnScreenFromUserGuess(word, array_of_letters){
 function UpdateScreen() { //every time when this function called we update all numbers/letters/or clear it
     document.getElementById('num_wins').textContent = num_wins;
     document.getElementById('num_guesses').textContent = num_guesses;
-    document.getElementById('guessed_letters').textContent = array_of_guessed_chars.join(", ");
-    document.getElementById('word_to_guess').textContent = word_on_screen;
+    document.getElementById('guessed_letters').textContent = array_of_guessed_chars.join(', ');
+    document.getElementById('country_to_guess').textContent = word_on_screen;
+    document.getElementById('flag').src = flag_image_dir + GetCountryId(country_to_guess) +'.png';
 }
 
 
@@ -51,10 +85,10 @@ function UpdateScreen() { //every time when this function called we update all n
 function Play(){ 
     if (array_of_guessed_chars.includes(event.key)) return;
     array_of_guessed_chars.push(event.key);
-    word_on_screen = GetWordOnScreenFromUserGuess(word_to_guess, array_of_guessed_chars);
+    word_on_screen = GetWordOnScreenFromUserGuess(country_to_guess, array_of_guessed_chars);
     
 
-    if (!word_to_guess.includes(event.key)) num_guesses--;
+    if (!country_to_guess.includes(event.key)) num_guesses--;
     if (num_guesses == 0) ResetStart();
     if (!word_on_screen.includes('_')) {
         num_wins++;

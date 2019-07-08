@@ -4,20 +4,73 @@
         <script src="assets/javascript/game.js"></script>
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+
 <style>
 
-    h1{
+    h1,p,div{
     font-family: 'Shadows Into Light', cursive;
     }
+#num_wins, #num_guesses, #word_to_guess, div#country_to_guess, div#guessed_letters{
+    font-family: 'Permanent Marker', cursive;
 
+}
 </style>
         <title></title>
     </head>
     <body>
-        <h1>Press any key to get started!</h1>
-        <p>Wins<div id="num_wins"></div></p>
-        <p>Current word<div id = "word_to_guess"></div></p>
-        <p>Number of guesses remaining is <div id ="num_guesses"></div></p>
-        <p>Letters already guessed<div id = "guessed_letters"></div></p>
+        <div class = "container-fluid">
+            <div class ="row">
+                <div clas = "col">
+                    <p class="blink">Press any key to get started!</p>
+                </div>
+            </div>
+            <div class ="row">
+                <div clas = "col-6">
+                    <h2>Guess what country flag is it?</h2>
+                </div>
+                <div class = "col-6">
+                    <img id="flag">
+                </div>
+            </div>
+            <div class ="row">
+                    <div clas = "col">
+                        <p>Wins</p>
+                    </div>
+            </div>
+            <div class ="row">
+                <div class = "col"><div id = "num_wins"></div></div>
+
+            </div>
+            <div class = "row">
+                <div class = "col"><p>Current word</p></div>
+            </div>
+            <div class = "row">
+                <div class = "col">
+                    <div id = "country_to_guess"></div>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col-8">
+                    <p>Number of guesses remaining is </p>
+                </div>
+                <div class = "col-4">
+                    <div id = "num_guesses"></div>
+                </div>
+            </div>
+            <div class = "row">
+                <div class = "col-8">
+                    <p>Letters already guessed</p>
+                </div>
+                <div class = "col-4">
+                    <div id = "guessed_letters"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <p>Wins<div id="num_wins"></div></p> -->
+        <!-- <p>Current word<div id = "word_to_guess"></div></p>
+        <p>Number of guesses remaining is <div id ="num_guesses"></div></p> -->
+        <!-- <p>Letters already guessed<div id = "guessed_letters"></div></p> -->
     </body>
 </html>
