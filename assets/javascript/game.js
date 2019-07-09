@@ -1,7 +1,7 @@
 var num_wins = 0;
 var num_guesses = 12;
 var array_of_guessed_chars = [];
-var word_on_screen;
+var word_on_screen; // country name on screen
 var country_to_guess;
 var flag_image_dir = 'assets/images/flags/';
 
@@ -9,10 +9,11 @@ var flag_image_dir = 'assets/images/flags/';
 // dictionary.
 function GetRandomWord() {
     var word_list = ['argentina', 'afghanistan', 'brazil', 
-    'belgium', 'cambodia', 'iran', 'india', 'russia','jordan', 'spain', 'australia', 'canada'];
+    'belgium', 'cambodia', 'iran', 'india', 'russia','jordan', 'spain', 'australia', 
+    'canada', 'bolivia','chad', 'china', 'eritrea', 'nepal', 'turkey'];
     return word_list[Math.floor(Math.random()*word_list.length)];  
 }
-
+// this function returns country code which is the same as the names of the flags images
 function GetCountryId(country_name) {
     switch(country_name) {
         case 'argentina':
@@ -39,6 +40,19 @@ function GetCountryId(country_name) {
             return 'au';
         case 'canada':
             return 'ca';
+        case 'bolivia':
+            return 'bo';
+        case 'chad':
+            return 'td';
+        case 'china':
+            return 'cn';
+        case 'eritrea':
+            return 'er';
+        case 'nepal':
+            return 'np';
+        case 'turkey':
+            return 'tr';
+        
         default:
             return '';
       }
@@ -81,16 +95,21 @@ function UpdateScreen() { //every time when this function called we update all n
 }
 
 
+//
 
 function Play(){ 
-    if (array_of_guessed_chars.includes(event.key)) return;
-    array_of_guessed_chars.push(event.key);
+    if (array_of_guessed_chars.includes(event.key)) return; // do nothing if the same key pressed
+    array_of_guessed_chars.push(event.key);// every time when key pressed add to guessed letters
     word_on_screen = GetWordOnScreenFromUserGuess(country_to_guess, array_of_guessed_chars);
-    
+    // country name hidden by "_"
 
     if (!country_to_guess.includes(event.key)) num_guesses--;
+    // if country to guess doesn't have guessed letter, substract from total num of guesses
+
     if (num_guesses == 0) ResetStart();
-    if (!word_on_screen.includes('_')) {
+    //condition where if number of guesses = 0 , we restart the game
+    if (!word_on_screen.includes('_')) { 
+    // if country name do NOT have "_" it means user guessed the word and num of wins increments on +1
         num_wins++;
         ResetStart();
     }
