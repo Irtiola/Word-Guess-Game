@@ -3,6 +3,14 @@ body{
     background-position: center;
    
 }
+h1,p,div{
+    font-family: 'Shadows Into Light', cursive;
+    }
+#num_wins, #num_guesses, #word_to_guess, div#country_to_guess, div#guessed_letters{
+    font-family: 'Permanent Marker', cursive;
+    
+
+}
 
 h1{
     text-align: center;
